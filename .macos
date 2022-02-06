@@ -900,6 +900,9 @@ defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool t
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
+echo "Everything done. Killing affected applications to take effect. Note that some of these changes require a logout/restart to take effect."
+
+sleep 3;
 
 for app in "Activity Monitor" \
     "Address Book" \
@@ -917,11 +920,10 @@ for app in "Activity Monitor" \
     "Photos" \
     "Safari" \
     "SizeUp" \
-    "Spectacle" \
+    "rectangle" \
     "SystemUIServer" \
     "Terminal" \
     "Transmission" \
     "iTerm2"; do
     killall "${app}" &> /dev/null
 done
-echo "Done. Note that some of these changes require a logout/restart to take effect."
