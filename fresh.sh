@@ -33,6 +33,9 @@ mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_passwor
 # Install PHP extensions with PECL
 pecl install pcov igbinary imagick redis
 
+# Symlink composer to directory in $PATH
+sudo ln -s /opt/homebrew/bin/composer /usr/local/bin/composer
+
 # Install global Composer packages
 /usr/local/bin/composer global require laravel/installer laravel/valet beyondcode/expose themsaid/ibis
 
