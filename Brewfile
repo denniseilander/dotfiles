@@ -89,5 +89,4 @@ cask 'font-source-serif-pro'
 mas 'Keynote', id: 409183694
 mas 'Numbers', id: 409203825
 mas 'Spark', id: 1176895641
-mas 'Speedtest', id: 1153157709
 mas 'Todoist', id: 585829637
