@@ -48,7 +48,8 @@ If you did all of the above you may now follow these install instructions to set
     ```zsh
     ~/.dotfiles/fresh.sh
     ```
-
+⚠️ Note that after installing `Oh My Zsh` for the first time, the install process wil stop after installing ZSH.
+You should open a new terminal and run `~/.dotfiles/fresh.sh` again.
 5. After mackup is synced with your cloud storage, restore preferences by running `mackup restore`
 6. Restart your computer to finalize the process
 
