@@ -86,8 +86,6 @@ cask 'font-source-sans-pro'
 cask 'font-source-serif-pro'
 
 # Mac App Store
-mas 'FileZilla Pro', id: 1298486723
-mas 'Giphy Capture', id: 668208984
 mas 'Keynote', id: 409183694
 mas 'Numbers', id: 409203825
 mas 'Spark', id: 1176895641
