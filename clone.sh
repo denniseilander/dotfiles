@@ -6,4 +6,4 @@ SITES=$HOME/Sites
 PACKAGES=$SITES/packages
 
 # Personal
-gh repo clone denniseilander/laravel-passport-scopes-restriction $PACKAGES/passport-scopes-restriction
+git clone git@github.com:denniseilander/dotfiles.git $PACKAGES/passport-scopes-restriction
