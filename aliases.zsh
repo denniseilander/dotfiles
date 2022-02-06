@@ -8,22 +8,37 @@ alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias c="clear"
 alias compile="commit 'compile'"
 alias version="commit 'version'"
+alias sublime='open -a /Applications/Sublime\ Text.app "`pwd`"'
 
 # Directories
+alias documents="cd $HOME/Documents"
 alias dotfiles="cd $DOTFILES"
+alias downloads="cd $HOME/Downloads"
+alias home="cd $HOME"
 alias library="cd $HOME/Library"
 alias sites="cd $HOME/Sites"
-alias lara="sites && cd laravel/"
-alias docs="lara && cd docs/"
+alias work="cd $HOME/workspace"s
 
 # Laravel
 alias a="php artisan"
+alias a74="php74 artisan"
+alias a80="php80 artisan"
+alias a81="php81 artisan"
+alias create-database="touch ./database/database.sqlite"
+alias clearlog="rm -rf ./storage/logs/laravel.log"
+alias clearlogs="rm -rf ./storage/logs/*.log"
 alias fresh="php artisan migrate:fresh --seed"
 alias seed="php artisan db:seed"
 
 # PHP
 alias cfresh="rm -rf vendor/ composer.lock && composer i"
 alias composer="php -d memory_limit=-1 /opt/homebrew/bin/composer"
+alias composer74="php74 /usr/local/bin/composer"
+alias composer80="php80 /usr/local/bin/composer"
+alias composer81="php81 /usr/local/bin/composer"
+alias php74="/usr/local/opt/php@7.4/bin/php"
+alias php80="/usr/local/opt/php@8.0/bin/php"
+alias php81="/usr/local/opt/php@8.1/bin/php"
 
 # JS
 alias nfresh="rm -rf node_modules/ package-lock.json && npm install"
@@ -33,7 +48,7 @@ alias watch="npm run watch"
 alias docker-composer="docker-compose"
 
 # SQL Server
-alias mssql="docker run -e ACCEPT_EULA=Y -e SA_PASSWORD=LaravelWow1986! -p 1433:1433 mcr.microsoft.com/mssql/server:2017-latest"
+alias mssql="docker run -e ACCEPT_EULA=Y -e SA_PASSWORD=password -p 1433:1433 mcr.microsoft.com/mssql/server:2017-latest"
 
 # Git
 alias gst="git status"
@@ -44,6 +59,7 @@ alias amend="git add . && git commit --amend --no-edit"
 alias commit="git add . && git commit -m"
 alias diff="git diff"
 alias force="git push --force"
+alias nah="git clean -df && git reset --hard"
 alias nuke="git clean -df && git reset --hard"
 alias pop="git stash pop"
 alias pull="git pull"
