@@ -58,8 +58,14 @@ ln -s /opt/homebrew/Cellar/pcre2/10.39/include/pcre2.h /opt/homebrew/Cellar/php/
 brew services start mysql
 mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY ''; FLUSH PRIVILEGES;"
 
-# Install PHP extensions with PECL
+# Install PHP [LATEST] extensions with PECL
 pecl install igbinary imagick redis pcov
+
+# Install PHP [8.0] extensions with PECL
+/opt/homebrew/opt/php@8.0/bin/pecl install igbinary imagick redis pcov
+
+# Install PHP [7.4] extensions with PECL
+/opt/homebrew/opt/php@7.4/bin/pecl install igbinary imagick redis pcov
 
 # Install global Composer packages
 /opt/homebrew/bin/composer global require laravel/installer laravel/valet beyondcode/expose themsaid/ibis
