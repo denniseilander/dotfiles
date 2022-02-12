@@ -11,7 +11,7 @@ if test ! $(which brew); then
 fi
 
 # Oh My Zsh Setup
-ZSH_CUSTOM_PATH=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+ZSH_CUSTOM_PATH=${ZSH_CUSTOM:-~/.dotfiles/zsh-custom}
 
 # Check for Oh My Zsh and install if we don't have it
 if [ ! -e $HOME/.oh-my-zsh ]; then
@@ -22,6 +22,12 @@ fi
 rm -rf $HOME/.zshrc
 ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
 
+# Symlink aliases.zsh to zsh-custom directory
+ln -sf $HOME/.dotfiles/aliases.zsh $ZSH_CUSTOM_PATH/aliases.zsh
+
+# Symlink path.zsh to zsh-custom directory
+ln -sf $HOME/.dotfiles/path.zsh $ZSH_CUSTOM_PATH/path.zsh
+
 if [ ! -e $ZSH_CUSTOM_PATH/plugins/zsh-autosuggestions ]; then
   git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM_PATH/plugins/zsh-autosuggestions
 fi
@@ -29,7 +35,6 @@ fi
 # Install spaceship prompt for ZSH
 echo $ZSH_CUSTOM_PATH/themes/spaceship-prompt/spaceship.zsh-theme
 if [ ! -e $ZSH_CUSTOM_PATH/themes/spaceship-prompt ]; then
-  echo 'cloning spaceship prompt'
   git clone https://github.com/spaceship-prompt/spaceship-prompt.git $ZSH_CUSTOM_PATH/themes/spaceship-prompt --depth=1
 
   rm -rf $ZSH_CUSTOM_PATH/themes/spaceship.zsh-theme
