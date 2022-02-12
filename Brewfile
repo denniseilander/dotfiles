@@ -17,6 +17,7 @@ brew 'grep'
 brew 'httpie'
 brew 'mackup'
 brew 'mas' # Mac App Store manager
+brew 'pcre2' # https://freek.dev/2151-fixing-the-dreaded-pcre2h-file-not-found-error-when-installing-imagick
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
 brew 'svn' # Needed to install fonts
 

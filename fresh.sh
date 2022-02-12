@@ -46,12 +46,15 @@ brew update
 brew tap homebrew/bundle
 brew bundle --file $DOTFILES/Brewfile
 
+# Symlink extensions to work properly
+ln -s /opt/homebrew/Cellar/pcre2/10.39/include/pcre2.h /opt/homebrew/Cellar/php/8.1.2/include/php/ext/pcre/pcre2.h
+
 # Set default MySQL root password and auth type
 brew services start mysql
 mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY ''; FLUSH PRIVILEGES;"
 
 # Install PHP extensions with PECL
-pecl install pcov igbinary imagick redis
+pecl install igbinary imagick redis pcov
 
 # Install global Composer packages
 /opt/homebrew/bin/composer global require laravel/installer laravel/valet beyondcode/expose themsaid/ibis
