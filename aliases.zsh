@@ -17,7 +17,7 @@ alias downloads="cd $HOME/Downloads"
 alias home="cd $HOME"
 alias library="cd $HOME/Library"
 alias sites="cd $HOME/Sites"
-alias work="cd $HOME/workspace"s
+alias work="cd $HOME/workspace"
 
 # Laravel
 alias a="php artisan"
