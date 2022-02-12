@@ -33,7 +33,6 @@ if [ ! -e $ZSH_CUSTOM_PATH/plugins/zsh-autosuggestions ]; then
 fi
 
 # Install spaceship prompt for ZSH
-echo $ZSH_CUSTOM_PATH/themes/spaceship-prompt/spaceship.zsh-theme
 if [ ! -e $ZSH_CUSTOM_PATH/themes/spaceship-prompt ]; then
   git clone https://github.com/spaceship-prompt/spaceship-prompt.git $ZSH_CUSTOM_PATH/themes/spaceship-prompt --depth=1
 
@@ -50,9 +49,6 @@ brew update
 # Install all our dependencies with bundle (See Brewfile)
 brew tap homebrew/bundle
 brew bundle --file $DOTFILES/Brewfile
-
-# Symlink extensions to work properly
-ln -s /opt/homebrew/Cellar/pcre2/10.39/include/pcre2.h /opt/homebrew/Cellar/php/8.1.2/include/php/ext/pcre/pcre2.h
 
 # Set default MySQL root password and auth type
 brew services start mysql
