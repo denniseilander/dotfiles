@@ -41,6 +41,10 @@ alias php74="/opt/homebrew/opt/php@7.4/bin/php"
 alias php80="/opt/homebrew/opt/php@8.0/bin/php"
 alias php81="/opt/homebrew/opt/php@8.1/bin/php"
 
+alias pecl74="/opt/homebrew/opt/php@7.4/bin/pecl"
+alias pecl80="/opt/homebrew/opt/php@8.0/bin/pecl"
+alias pecl81="/opt/homebrew/opt/php@8.1/bin/pecl"
+
 # SQL Server
 alias mssql="docker run -e ACCEPT_EULA=Y -e SA_PASSWORD=password -p 1433:1433 mcr.microsoft.com/mssql/server:2017-latest"
 
