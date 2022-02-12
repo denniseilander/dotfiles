@@ -27,25 +27,19 @@ alias a81="php81 artisan"
 alias create-database="touch ./database/database.sqlite"
 alias clearlog="rm -rf ./storage/logs/laravel.log"
 alias clearlogs="rm -rf ./storage/logs/*.log"
-alias fresh="php artisan migrate:fresh --seed"
+alias mf="php artisan migrate:fresh"
+alias mfs="php artisan migrate:fresh --seed"
 alias seed="php artisan db:seed"
 
 # PHP
 alias cfresh="rm -rf vendor/ composer.lock && composer i"
-alias composer="php -d memory_limit=-1 /opt/homebrew/bin/composer"
-alias composer74="php74 /usr/local/bin/composer"
-alias composer80="php80 /usr/local/bin/composer"
-alias composer81="php81 /usr/local/bin/composer"
-alias php74="/usr/local/opt/php@7.4/bin/php"
-alias php80="/usr/local/opt/php@8.0/bin/php"
-alias php81="/usr/local/opt/php@8.1/bin/php"
+alias composer74="php74 /opt/homebrew/bin/composer"
+alias composer80="php80 /opt/homebrew/bin/composer"
+alias composer81="php81 /opt/homebrew/bin/composer"
 
-# JS
-alias nfresh="rm -rf node_modules/ package-lock.json && npm install"
-alias watch="npm run watch"
-
-# Docker
-alias docker-composer="docker-compose"
+alias php74="/opt/homebrew/opt/php@7.4/bin/php"
+alias php80="/opt/homebrew/opt/php@8.0/bin/php"
+alias php81="/opt/homebrew/opt/php@8.1/bin/php"
 
 # SQL Server
 alias mssql="docker run -e ACCEPT_EULA=Y -e SA_PASSWORD=password -p 1433:1433 mcr.microsoft.com/mssql/server:2017-latest"
