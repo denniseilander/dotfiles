@@ -32,14 +32,17 @@ alias mfs="php artisan migrate:fresh --seed"
 alias seed="php artisan db:seed"
 
 # PHP
-alias cfresh="rm -rf vendor/ composer.lock && composer i"
-alias composer74="php74 /opt/homebrew/bin/composer"
-alias composer80="php80 /opt/homebrew/bin/composer"
-alias composer81="php81 /opt/homebrew/bin/composer"
-
+CURRENT_PHP=$(get_current_php_version)
+alias php="php${CURRENT_PHP}" # Override global php which auto-detect it's version
 alias php74="/opt/homebrew/opt/php@7.4/bin/php"
 alias php80="/opt/homebrew/opt/php@8.0/bin/php"
 alias php81="/opt/homebrew/opt/php@8.1/bin/php"
+
+CURRENT_COMPOSER=$(get_current_php_version)
+alias composer="composer${CURRENT_PHP}"  # Override global composer which auto-detect php version
+alias composer74="php74 /opt/homebrew/bin/composer"
+alias composer80="php80 /opt/homebrew/bin/composer"
+alias composer81="php81 /opt/homebrew/bin/composer"
 
 alias pecl74="/opt/homebrew/opt/php@7.4/bin/pecl"
 alias pecl80="/opt/homebrew/opt/php@8.0/bin/pecl"
@@ -66,3 +69,27 @@ alias resolve="git add . && git commit --no-edit"
 alias stash="git stash -u"
 alias unstage="git restore --staged ."
 alias wip="commit wip"
+
+# Alias functions
+get_current_php_version () {
+	if [ ! -e ./composer.json ]; then
+	else
+		for VERSION in $(cat composer.json | grep '"php"' | tr -s ' ' | cut -d '"' -f 4)
+		do
+			if grep -q "8.1" <<< "$VERSION"; then
+				echo "81"
+				exit 0
+			fi
+
+			if grep -q "8.0" <<< "$VERSION"; then
+				echo "80"
+				exit 0
+			fi
+
+			if grep -q "7.4" <<< "$VERSION"; then
+				echo "74"
+				exit 0
+			fi
+		done
+	fi
+}
