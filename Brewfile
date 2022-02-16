@@ -33,6 +33,7 @@ brew 'nginx'
 brew 'node'
 brew 'redis'
 brew 'yarn'
+brew 'nvm'
 
 # Apps
 cask '1password'
