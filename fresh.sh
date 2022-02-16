@@ -54,13 +54,14 @@ brew bundle --file $DOTFILES/Brewfile
 brew services start mysql
 mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY ''; FLUSH PRIVILEGES;"
 
-# Install PHP [LATEST] extensions with PECL
+# Symlink pcre2 to fix bug when installing using pecl (PHP LATEST, 8.0, 7.4)
+ln -s /opt/homebrew/opt/pcre2/include/pcre2.h /opt/homebrew/opt/php/include/php/ext/pcre/pcre2.h
+ln -s /opt/homebrew/opt/pcre2/include/pcre2.h /opt/homebrew/opt/php@8.0/include/php/ext/pcre/pcre2.h
+ln -s /opt/homebrew/opt/pcre2/include/pcre2.h /opt/homebrew/opt/php@7.4/include/php/ext/pcre/pcre2.h
+
+# Install PHP [LATEST, 8.0, 7.4] extensions with PECL
 pecl install igbinary imagick redis pcov
-
-# Install PHP [8.0] extensions with PECL
 /opt/homebrew/opt/php@8.0/bin/pecl install igbinary imagick redis pcov
-
-# Install PHP [7.4] extensions with PECL
 /opt/homebrew/opt/php@7.4/bin/pecl install igbinary imagick redis pcov
 
 # Install global Composer packages
