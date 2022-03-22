@@ -6,8 +6,18 @@ echo "Setting up your Mac..."
 if test ! $(which brew); then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  UNAME_MACHINE="$(/usr/bin/uname -m)"
+
+  if [[ "${UNAME_MACHINE}" == "arm64" ]]
+  then
+    # On ARM macOS, brew will be installed to /opt/homebrew
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  else
+    # On Intel macOS, brew will be installed to to /usr/local
+    echo 'eval "$(/usr/local/bin/brew shellenv)"' >> $HOME/.zprofile
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
 fi
 
 # Oh My Zsh Setup
