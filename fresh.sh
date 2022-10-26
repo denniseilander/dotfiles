@@ -69,9 +69,9 @@ brew services start mysql
 mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY ''; FLUSH PRIVILEGES;"
 
 # Symlink pcre2 to fix bug when installing using pecl (PHP LATEST, 8.0, 7.4)
-ln -s $PHP_PATH/pcre2/include/pcre2.h /opt/homebrew/opt/php/include/php/ext/pcre/pcre2.h
-ln -s $PHP_PATH/pcre2/include/pcre2.h /opt/homebrew/opt/php@8.0/include/php/ext/pcre/pcre2.h
-ln -s $PHP_PATH/pcre2/include/pcre2.h /opt/homebrew/opt/php@7.4/include/php/ext/pcre/pcre2.h
+ln -s $PHP_PATH/pcre2/include/pcre2.h $PHP_PATH/php/include/php/ext/pcre/pcre2.h
+ln -s $PHP_PATH/pcre2/include/pcre2.h $PHP_PATH/php@8.0/include/php/ext/pcre/pcre2.h
+ln -s $PHP_PATH/pcre2/include/pcre2.h $PHP_PATH/php@7.4/include/php/ext/pcre/pcre2.h
 
 # Install PHP [LATEST, 8.0, 7.4] extensions with PECL
 pecl install igbinary imagick redis pcov
