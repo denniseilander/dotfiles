@@ -19,6 +19,32 @@ alias library="cd $HOME/Library"
 alias sites="cd $HOME/Sites"
 alias work="cd $HOME/workspace"
 
+UNAME_MACHINE="$(/usr/bin/uname -m)"
+
+if [[ "${UNAME_MACHINE}" == "arm64" ]]
+then
+  # On ARM macOS, brew extensions will be installed to /opt/homebrew
+  PHP_PATH="/opt/homebrew/opt"
+  COMPOSER_PATH="/opt/homebrew/bin/composer"
+else
+  # On Intel macOS, brew extensions will be installed to to /usr/local
+  PHP_PATH="/usr/local/opt"
+  COMPOSER_PATH="/usr/local/opt/composer/bin/composer"
+fi
+
+# PHP
+alias php74="$PHP_PATH/php@7.4/bin/php"
+alias php80="$PHP_PATH/php@8.0/bin/php"
+alias php81="$PHP_PATH/php@8.1/bin/php"
+
+alias composer74="php74 $COMPOSER_PATH"
+alias composer80="php80 $COMPOSER_PATH"
+alias composer81="php81 $COMPOSER_PATH"
+
+alias pecl74="$PHP_PATH/php@7.4/bin/pecl"
+alias pecl80="$PHP_PATH/php@8.0/bin/pecl"
+alias pecl81="$PHP_PATH/php@8.1/bin/pecl"
+
 # Laravel
 alias a="php artisan"
 alias a74="php74 artisan"
@@ -30,23 +56,6 @@ alias clearlogs="rm -rf ./storage/logs/*.log"
 alias mf="php artisan migrate:fresh"
 alias mfs="php artisan migrate:fresh --seed"
 alias seed="php artisan db:seed"
-
-# PHP
-CURRENT_PHP=$(get_current_php_version)
-alias php="php${CURRENT_PHP}" # Override global php which auto-detect it's version
-alias php74="/opt/homebrew/opt/php@7.4/bin/php"
-alias php80="/opt/homebrew/opt/php@8.0/bin/php"
-alias php81="/opt/homebrew/opt/php@8.1/bin/php"
-
-CURRENT_COMPOSER=$(get_current_php_version)
-alias composer="composer${CURRENT_PHP}"  # Override global composer which auto-detect php version
-alias composer74="php74 /opt/homebrew/bin/composer"
-alias composer80="php80 /opt/homebrew/bin/composer"
-alias composer81="php81 /opt/homebrew/bin/composer"
-
-alias pecl74="/opt/homebrew/opt/php@7.4/bin/pecl"
-alias pecl80="/opt/homebrew/opt/php@8.0/bin/pecl"
-alias pecl81="/opt/homebrew/opt/php@8.1/bin/pecl"
 
 # SQL Server
 alias mssql="docker run -e ACCEPT_EULA=Y -e SA_PASSWORD=password -p 1433:1433 mcr.microsoft.com/mssql/server:2017-latest"
@@ -69,27 +78,3 @@ alias resolve="git add . && git commit --no-edit"
 alias stash="git stash -u"
 alias unstage="git restore --staged ."
 alias wip="commit wip"
-
-# Alias functions
-get_current_php_version () {
-	if [ ! -e ./composer.json ]; then
-	else
-		for VERSION in $(cat composer.json | grep '"php"' | tr -s ' ' | cut -d '"' -f 4)
-		do
-			if grep -q "8.1" <<< "$VERSION"; then
-				echo "81"
-				exit 0
-			fi
-
-			if grep -q "8.0" <<< "$VERSION"; then
-				echo "80"
-				exit 0
-			fi
-
-			if grep -q "7.4" <<< "$VERSION"; then
-				echo "74"
-				exit 0
-			fi
-		done
-	fi
-}
