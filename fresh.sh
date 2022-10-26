@@ -13,10 +13,14 @@ if test ! $(which brew); then
     # On ARM macOS, brew will be installed to /opt/homebrew
     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
+    PHP_PATH="/opt/homebrew/opt"
+    COMPOSER_PATH="/opt/homebrew/bin/composer"
   else
     # On Intel macOS, brew will be installed to to /usr/local
     echo 'eval "$(/usr/local/bin/brew shellenv)"' >> $HOME/.zprofile
     eval "$(/usr/local/bin/brew shellenv)"
+    PHP_PATH="/usr/local/opt"
+    COMPOSER_PATH="/usr/local/opt/composer/bin/composer"
   fi
 fi
 
@@ -65,17 +69,17 @@ brew services start mysql
 mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY ''; FLUSH PRIVILEGES;"
 
 # Symlink pcre2 to fix bug when installing using pecl (PHP LATEST, 8.0, 7.4)
-ln -s /opt/homebrew/opt/pcre2/include/pcre2.h /opt/homebrew/opt/php/include/php/ext/pcre/pcre2.h
-ln -s /opt/homebrew/opt/pcre2/include/pcre2.h /opt/homebrew/opt/php@8.0/include/php/ext/pcre/pcre2.h
-ln -s /opt/homebrew/opt/pcre2/include/pcre2.h /opt/homebrew/opt/php@7.4/include/php/ext/pcre/pcre2.h
+ln -s $PHP_PATH/pcre2/include/pcre2.h /opt/homebrew/opt/php/include/php/ext/pcre/pcre2.h
+ln -s $PHP_PATH/pcre2/include/pcre2.h /opt/homebrew/opt/php@8.0/include/php/ext/pcre/pcre2.h
+ln -s $PHP_PATH/pcre2/include/pcre2.h /opt/homebrew/opt/php@7.4/include/php/ext/pcre/pcre2.h
 
 # Install PHP [LATEST, 8.0, 7.4] extensions with PECL
 pecl install igbinary imagick redis pcov
-/opt/homebrew/opt/php@8.0/bin/pecl install igbinary imagick redis pcov
-/opt/homebrew/opt/php@7.4/bin/pecl install igbinary imagick redis pcov
+$PHP_PATH/php@8.0/bin/pecl install igbinary imagick redis pcov
+$PHP_PATH/php@7.4/bin/pecl install igbinary imagick redis pcov
 
 # Install global Composer packages
-/opt/homebrew/bin/composer global require laravel/installer laravel/valet beyondcode/expose themsaid/ibis
+$COMPOSER_PATH global require laravel/installer laravel/valet beyondcode/expose themsaid/ibis
 
 # Install Laravel Valet
 $HOME/.composer/vendor/bin/valet install
